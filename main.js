@@ -114,10 +114,9 @@ const buildDinoCards = (array) => {
     //         </div>`;
 
 
-    // $('#kennelDinos').html('');
-    array.forEach((dino) => {
-        // $('#kennelDinos').append(`
-        return `
+    $('#kennelDinos').html('');
+    array.forEach((dino, i) => {
+        $('#kennelDinos').append(`
             <div id="dinoCard">
                 <div class="card" style="width: 18rem;">
                     <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
@@ -128,14 +127,14 @@ const buildDinoCards = (array) => {
                         <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
                     </div>
                     <div id="containerButtons">
-                        <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
-                        <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
-                        <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
-                        <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                        <button type="button" class="btn btn-outline-success" id="petBtn-${[i]}">Pet</button>
+                        <button type="button" class="btn btn-outline-warning" id="feedBtn-${[i]}">Feed</button>
+                        <button type="button" class="btn btn-outline-info" id="adventureBtn-${[i]}">Adventure</button>
+                        <button type="button" class="btn btn-outline-danger" id="removeBtn-${[i]}">Remove</button>
                     </div>
                 </div>
             </div>
-            `});
+            `)});
 
 };
 
@@ -154,10 +153,31 @@ const kennelDinos = () => {
     $('#kennelDinos').html(buildDinoCards(dinos))
 }
 
+const petDino = (index) => {
+  const petDinoButton = $(`#petBtn-${index}`);
+  dinos.health += 5;
+
+  petDinoButton.on('click', () => {
+    // dinos.health.push(dinoHealth);
+    // console.log("clicked");
+    dinos.health += 5;
+  })
+  buildDinoCards(dinos);
+}
+
+// const buttonEvents = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     document.querySelector(`#petBtn-${[i]}`).addEventListener("click", petDino);
+//     // document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener("click", addToWishlist);
+//   }
+// }
+
 const init = () => {
-    // buildDinoCards(dinos);
+    buildDinoCards(dinos);
     labelHealthStatus();
     kennelDinos();
+    petDino();
+    // buttonEvents(dinos);
 };
 
 init();

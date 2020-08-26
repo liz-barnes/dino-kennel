@@ -100,31 +100,40 @@ const dinos = [
     //             <div class="progress" id="healthStatusBar">
     //                 <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dinos.health}" aria-valuemin="0" aria-valuemax="100">${dinos.health}</div>
     //             </div>
-    //             <div id="healthStatusBar">
-    //                 <progess class="progress-bar" id="healthStatus" max="100" value="${dinos.health}">${dinos.health}</progress>
-    //             </div>
+    //             <div id="containerButtons">
+    // //              <button type="button" class="btn btn-outline-success">Pet</button>
+    // //              <button type="button" class="btn btn-outline-warning">Feed</button>
+    // //              <button type="button" class="btn btn-outline-info">Adventure</button>
+    // //              <button type="button" class="btn btn-outline-danger">Remove</button>
+    // //           </div>
+    //         </div>`;
     //         </div>`;
 
-    $('#kennelDinos').html('');
+
+    // $('#kennelDinos').html('');
     array.forEach((dino) => {
-        $('#kennelDinos').append(`
-        <div class="card" style="width: 18rem;">
+        // $('#kennelDinos').append(`
+        return `
+            <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">${dino.name}</h5>
                 </div>
-                <div class="progress">
+                <div class="progress" id="healthStatusBar">
                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
                 </div>
-            </div>`
-    );
-    
-    });
-};
+                <div id="containerButtons">
+                    <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
+                    <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
+                    <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
+                    <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                </div>
+            </div>
+            `});
+    };
 
 const init = () => {
-    buildDinoCards(dinos);
-
+    // buildDinoCards(dinos);
 }
 
 init();

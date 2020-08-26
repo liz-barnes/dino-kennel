@@ -90,3 +90,47 @@ const dinos = [
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOdrC7hlvBawFQ7g8vgwHcfQphX5WfeN2bth0dvc4M2oxNGdSD'
     }
   ];
+
+const buildForm = () => {
+    $('#addDinoToKennel').html(`
+    <a class="btn btn-primary" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Add to Kennel
+    </a>
+    <div class="collapse" id="collapseForm">
+    <form>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dinoName">Name</label>
+        <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dinoOwner">Owner</label>
+        <input type="password" class="form-control" id="inputOwner" placeholder="Enter Owner">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dinoAge">Age</label>
+        <input type="text" class="form-control" id="inputAge" placeholder="Enter Age">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="dinoImage">Image</label>
+        <input type="text" class="form-control" id="inputImage" placeholder="Enter Image URL">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="dinoType">Type</label>
+        <input type="text" class="form-control" id="inputType" placeholder="Enter Type">
+      </div>
+    </div>
+    <button type="button" class="btn btn-primary" id="addDinoToKennelBtn">Submit</button>
+  </form>
+  </div>`)
+};
+
+const init = () => {
+    buildForm();
+}
+
+init();

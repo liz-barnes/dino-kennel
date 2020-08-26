@@ -90,3 +90,30 @@ const dinos = [
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOdrC7hlvBawFQ7g8vgwHcfQphX5WfeN2bth0dvc4M2oxNGdSD'
     }
   ];
+
+  const buildDinoCards = (array) => {
+    return `<div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${dinos.name}</h5>
+                </div>
+            </div>`;
+
+    // $('#kennelDinos').html('');
+    // array.forEach((dino) => {
+    //     $('#kennelDinos').append(`
+    //     <div class="card" style="width: 18rem;">
+    //     <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
+    //     <div class="card-body">
+    //         <h5 class="card-title">${dino.name}</h5>
+    //     </div>
+    // </div>
+    // `);
+    
+    // });
+};
+const init = () => {
+
+}
+
+init();

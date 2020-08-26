@@ -92,37 +92,38 @@ const dinos = [
   ];
 
   const buildDinoCards = (array) => {
-    return `<div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${dinos.name}</h5>
-                </div>
-                <div class="progress" id="healthStatusBar">
-                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dinos.health}" aria-valuemin="0" aria-valuemax="100">${dinos.health}</div>
-                </div>
-                <div id="healthStatusBar">
-                    <progess class="progress-bar" id="healthStatus" max="100" value="${dinos.health}">${dinos.health}</progress>
-                </div>
-            </div>`;
-
-    // $('#kennelDinos').html('');
-    // array.forEach((dino) => {
-    //     $('#kennelDinos').append(`
-    //     <div class="card" style="width: 18rem;">
-    //             <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
+    // return `<div class="card" style="width: 18rem;">
+    //             <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
     //             <div class="card-body">
-    //                 <h5 class="card-title">${dino.name}</h5>
+    //                 <h5 class="card-title">${dinos.name}</h5>
+    //             </div>
+    //             <div class="progress" id="healthStatusBar">
+    //                 <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dinos.health}" aria-valuemin="0" aria-valuemax="100">${dinos.health}</div>
     //             </div>
     //             <div id="healthStatusBar">
-    //                 <progess class="progress-bar" id="healthStatus" max="100" value="${dino.health}">${dino.health}</progress>
+    //                 <progess class="progress-bar" id="healthStatus" max="100" value="${dinos.health}">${dinos.health}</progress>
     //             </div>
-    //         </div>`
-    // );
+    //         </div>`;
+
+    $('#kennelDinos').html('');
+    array.forEach((dino) => {
+        $('#kennelDinos').append(`
+        <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${dino.name}</h5>
+                </div>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
+                </div>
+            </div>`
+    );
     
-    // });
+    });
 };
 
 const init = () => {
+    buildDinoCards(dinos);
 
 }
 

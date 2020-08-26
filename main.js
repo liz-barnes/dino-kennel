@@ -1,3 +1,7 @@
+const kennel = [];
+const hospital = [];
+const graveyard = [];
+
 const dinos = [
     {
       id: 'dino1',
@@ -91,7 +95,7 @@ const dinos = [
     }
   ];
 
-  const buildDinoCards = (array) => {
+const buildDinoCards = (array) => {
     // return `<div class="card" style="width: 18rem;">
     //             <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
     //             <div class="card-body">
@@ -132,10 +136,28 @@ const dinos = [
                 </div>
             </div>
             `});
-    };
+
+};
+
+const labelHealthStatus = () => {
+    if (dinos.health === 0) {
+        graveyard.push(dinos);
+    } else if (dinos.health < 51) {
+        hospital.push(dinos);
+    } else if (dinos.health > 50){
+        kennel.push(dinos);
+    }
+}
+console.log(kennel);
+
+const kennelDinos = () => {
+    $('#kennelDinos').html(buildDinoCards(dinos))
+}
 
 const init = () => {
     // buildDinoCards(dinos);
-}
+    labelHealthStatus();
+    kennelDinos();
+};
 
 init();

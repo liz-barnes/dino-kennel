@@ -92,28 +92,40 @@ const dinos = [
   ];
 
   const buildDinoCards = (array) => {
-    return `<div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${dinos.name}</h5>
-                </div>
-            </div>`;
+    // return `<div class="card" style="width: 18rem;">
+    //             <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
+    //             <div class="card-body">
+    //                 <h5 class="card-title">${dinos.name}</h5>
+    //             </div>
+    //             <div id="containerButtons">
+    //                 <button type="button" class="btn btn-outline-success">Pet</button>
+    //                 <button type="button" class="btn btn-outline-warning">Feed</button>
+    //                 <button type="button" class="btn btn-outline-info">Adventure</button>
+    //                 <button type="button" class="btn btn-outline-danger">Remove</button>
+    //             </div>
+    //         </div>`;
 
     // $('#kennelDinos').html('');
-    // array.forEach((dino) => {
-    //     $('#kennelDinos').append(`
-    //     <div class="card" style="width: 18rem;">
-    //     <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
-    //     <div class="card-body">
-    //         <h5 class="card-title">${dino.name}</h5>
-    //     </div>
-    // </div>
-    // `);
-    
-    // });
-};
-const init = () => {
+    array.forEach((dino) => {
+        // $('#kennelDinos').append(`
+        return `
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${dino.name}</h5>
+                </div>
+                <div id="containerButtons">
+                    <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
+                    <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
+                    <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
+                    <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                </div>
+            </div>
+            `});
+    };
 
+const init = () => {
+    // buildDinoCards(dinos);
 }
 
 init();

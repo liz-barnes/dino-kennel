@@ -114,19 +114,21 @@ const dinos = [
     array.forEach((dino) => {
         // $('#kennelDinos').append(`
         return `
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">${dino.name}</h5>
-                </div>
-                <div class="progress" id="healthStatusBar">
-                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
-                </div>
-                <div id="containerButtons">
-                    <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
-                    <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
-                    <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
-                    <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+            <div id="dinoCard">
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">${dino.name}</h5>
+                    </div>
+                    <div class="progress" id="healthStatusBar">
+                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
+                    </div>
+                    <div id="containerButtons">
+                        <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
+                        <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
+                        <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
+                        <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                    </div>
                 </div>
             </div>
             `});

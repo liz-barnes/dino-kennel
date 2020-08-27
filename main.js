@@ -41,7 +41,7 @@ const dinos = [
       owner: 'Abbey',
       adventures: [],
       health: 100,
-      imageUrl: 'https://lh3.googleusercontent.com/proxy/9VryojA_R_08l3UWgPwi1iskyQ_fHW2TESXEZLHF6RG22aD4XscmtLpqu7Tfrr7nSLHuooFLlvMJeCXsM0zq7v4Jy0gDEAdQ5lFKsbqWClKbTh1wgXViYV7N'
+      imageUrl: 'https://media.wired.com/photos/590a5551f5d3a93367708fcf/master/pass/165517482-featured.jpg'
     },
     {
       id: 'dino5',

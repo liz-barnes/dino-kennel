@@ -141,10 +141,10 @@ const buildDinoCard = (item, index) => {
                     <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${item.health}" aria-valuemin="0" aria-valuemax="100">${item.health}</div>
                 </div>
                 <div id="containerButtons">
-                    <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
-                    <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
-                    <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
-                    <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                    <button type="button" class="btn btn-outline-success" id="petBtn-${index}">Pet</button>
+                    <button type="button" class="btn btn-outline-warning" id="feedBtn-${index}">Feed</button>
+                    <button type="button" class="btn btn-outline-info" id="adventureBtn-${index}">Adventure</button>
+                    <button type="button" class="btn btn-outline-danger" id="removeBtn-${index}">Remove</button>
                 </div>
             </div>
         </div>`

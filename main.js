@@ -37,7 +37,7 @@ const dinos = [
       owner: 'Abbey',
       adventures: [],
       health: 100,
-      imageUrl: 'https://lh3.googleusercontent.com/proxy/9VryojA_R_08l3UWgPwi1iskyQ_fHW2TESXEZLHF6RG22aD4XscmtLpqu7Tfrr7nSLHuooFLlvMJeCXsM0zq7v4Jy0gDEAdQ5lFKsbqWClKbTh1wgXViYV7N'
+      imageUrl: 'https://media.wired.com/photos/590a5551f5d3a93367708fcf/master/pass/165517482-featured.jpg'
     },
     {
       id: 'dino5',
@@ -129,8 +129,42 @@ const buildForm = () => {
   </div>`)
 };
 
+const buildDinoCard = (item, index) => {
+    return `
+        <div id="dinoCard">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${item.name}</h5>
+                </div>
+                <div class="progress" id="healthStatusBar">
+                    <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${item.health}" aria-valuemin="0" aria-valuemax="100">${item.health}</div>
+                </div>
+                <div id="containerButtons">
+                    <button type="button" class="btn btn-outline-success" id="petBtn">Pet</button>
+                    <button type="button" class="btn btn-outline-warning" id="feedBtn">Feed</button>
+                    <button type="button" class="btn btn-outline-info" id="adventureBtn">Adventure</button>
+                    <button type="button" class="btn btn-outline-danger" id="removeBtn">Remove</button>
+                </div>
+            </div>
+        </div>`
+};
+
+const showCards = (array) => {
+  array.forEach((item, index) => {
+    if (item.health === 0) {
+      $('#graveyardDinos').append(buildDinoCard(item, index));
+    } else if (item.health <= 50) {
+      $('#hospitalDinos').append(buildDinoCard(item, index));
+    } else if (item.health > 50) {
+      $('#kennelDinos').append(buildDinoCard(item, index));
+    }
+  })
+};
+
 const init = () => {
     buildForm();
+    showCards(dinos);
 }
 
 init();

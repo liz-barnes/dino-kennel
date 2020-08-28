@@ -133,7 +133,7 @@ const buildDinoCard = (item, index) => {
     return `
         <div id="dinoCard-${index}">
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
+                <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap" id=dinoImage-${index}>
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
                 </div>
@@ -185,16 +185,40 @@ const buildModal = () => {
 </div>`
 };
 
-const showModal = () => {
-  $('#dinoCard-0').click(() => {
-    $('#containerModal').append(buildModal());
+const showModal = (array) => {
+  array.forEach((item)=> {
+    $(`item-${index}`).click(() => {
+      $('#containerModal').html(`
+      <div class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal body text goes here.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>`);
+    })
   })
-}
+  // $('#dinoCard-0').click(() => {
+  //   $('#containerModal').append(buildModal());
+  // })
+};
 
 const init = () => {
     buildForm();
     showCards(dinos);
-    showModal();
+    showModal(dinos);
 }
 
 init();

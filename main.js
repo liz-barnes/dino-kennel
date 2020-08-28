@@ -1,7 +1,3 @@
-const kennel = [];
-const hospital = [];
-const graveyard = [];
-
 const dinos = [
     {
       id: 'dino1',
@@ -95,89 +91,106 @@ const dinos = [
     }
   ];
 
-const buildDinoCards = (array) => {
-    // return `<div class="card" style="width: 18rem;">
-    //             <img class="card-img-top" src="${dinos.imageUrl}" alt="Card image cap">
-    //             <div class="card-body">
-    //                 <h5 class="card-title">${dinos.name}</h5>
-    //             </div>
-    //             <div class="progress" id="healthStatusBar">
-    //                 <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dinos.health}" aria-valuemin="0" aria-valuemax="100">${dinos.health}</div>
-    //             </div>
-    //             <div id="containerButtons">
-    // //              <button type="button" class="btn btn-outline-success">Pet</button>
-    // //              <button type="button" class="btn btn-outline-warning">Feed</button>
-    // //              <button type="button" class="btn btn-outline-info">Adventure</button>
-    // //              <button type="button" class="btn btn-outline-danger">Remove</button>
-    // //           </div>
-    //         </div>`;
-    //         </div>`;
-
-
-    $('#kennelDinos').html('');
-    array.forEach((dino, i) => {
-        $('#kennelDinos').append(`
-            <div id="dinoCard">
-                <div class="card" style="width: 18rem;">
-                    <img class="card-img-top" src="${dino.imageUrl}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">${dino.name}</h5>
-                    </div>
-                    <div class="progress" id="healthStatusBar">
-                        <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${dino.health}" aria-valuemin="0" aria-valuemax="100">${dino.health}</div>
-                    </div>
-                    <div id="containerButtons">
-                        <button type="button" class="btn btn-outline-success" id="petBtn-${[i]}">Pet</button>
-                        <button type="button" class="btn btn-outline-warning" id="feedBtn-${[i]}">Feed</button>
-                        <button type="button" class="btn btn-outline-info" id="adventureBtn-${[i]}">Adventure</button>
-                        <button type="button" class="btn btn-outline-danger" id="removeBtn-${[i]}">Remove</button>
-                    </div>
-                </div>
-            </div>
-            `)});
-
-};
-
-const labelHealthStatus = () => {
-    if (dinos.health === 0) {
-        graveyard.push(dinos);
-    } else if (dinos.health < 51) {
-        hospital.push(dinos);
-    } else if (dinos.health > 50){
-        kennel.push(dinos);
-    }
-}
-console.log(kennel);
-
-const kennelDinos = () => {
-    $('#kennelDinos').html(buildDinoCards(dinos))
-}
-
-const petDino = (index) => {
-  const petDinoButton = $(`#petBtn-${index}`);
-  dinos.health += 5;
-
-  petDinoButton.on('click', () => {
-    // dinos.health.push(dinoHealth);
-    // console.log("clicked");
-    dinos.health += 5;
-  })
-  buildDinoCards(dinos);
-}
-
-// const buttonEvents = (arr) => {
-//   for (let i = 0; i < arr.length; i++) {
-//     document.querySelector(`#petBtn-${[i]}`).addEventListener("click", petDino);
-//     // document.querySelector(`#add-to-wishlist-${[i]}`).addEventListener("click", addToWishlist);
-//   }
+// const labelHealthStatus = () => {
+//     if (dinos.health === 0) {
+//         graveyard.push(dinos);
+//     } else if (dinos.health < 51) {
+//         hospital.push(dinos);
+//     } else if (dinos.health > 50){
+//         kennel.push(dinos);
+//     }
 // }
 
-const init = () => {
-    buildDinoCards(dinos);
-    labelHealthStatus();
-    kennelDinos();
-    petDino();
-    // buttonEvents(dinos);
+const buildForm = () => {
+  $('#addDinoToKennel').html(`
+  <a class="btn btn-primary" data-toggle="collapse" href="#collapseForm" role="button" aria-expanded="false" aria-controls="collapseExample">
+  Add to Kennel
+  </a>
+  <div class="collapse" id="collapseForm">
+  <form>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="dinoName">Name</label>
+      <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="dinoOwner">Owner</label>
+      <input type="password" class="form-control" id="inputOwner" placeholder="Enter Owner">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="dinoAge">Age</label>
+      <input type="text" class="form-control" id="inputAge" placeholder="Enter Age">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="dinoImage">Image</label>
+      <input type="text" class="form-control" id="inputImage" placeholder="Enter Image URL">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="dinoType">Type</label>
+      <input type="text" class="form-control" id="inputType" placeholder="Enter Type">
+    </div>
+  </div>
+  <button type="button" class="btn btn-primary" id="addDinoToKennelBtn">Submit</button>
+</form>
+</div>`)
 };
+
+const buildDinoCard = (item, index) => {
+  return `
+      <div id="dinoCard">
+          <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
+              <div class="card-body">
+                  <h5 class="card-title">${item.name}</h5>
+              </div>
+              <div class="progress" id="healthStatusBar">
+                  <div class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 50%" aria-valuenow="${item.health}" aria-valuemin="0" aria-valuemax="100">${item.health}</div>
+              </div>
+              <div id="containerButtons">
+                  <button type="button" class="btn btn-outline-success" id="petBtn-${index}">Pet</button>
+                  <button type="button" class="btn btn-outline-warning" id="feedBtn-${index}">Feed</button>
+                  <button type="button" class="btn btn-outline-info" id="adventureBtn-${index}">Adventure</button>
+                  <button type="button" class="btn btn-outline-danger" id="removeBtn-${index}">Remove</button>
+              </div>
+          </div>
+      </div>`
+};
+
+const showCards = (array) => {
+array.forEach((item, index) => {
+  if (item.health === 0) {
+    $('#graveyardDinos').append(buildDinoCard(item, index));
+  } else if (item.health <= 50) {
+    $('#hospitalDinos').append(buildDinoCard(item, index));
+  } else if (item.health > 50) {
+    $('#kennelDinos').append(buildDinoCard(item, index));
+  }
+})
+};
+
+const petDino = (item, index, array) => {
+  // // const petDinoButton = $(`#petBtn-${index}`);
+  // // dinos.health += 5;
+
+  $(`petBtn-${index}`).click(() => {
+  //   // dinos.health.push(dinoHealth);
+  //   // console.log("clicked");
+  //   // item.health += 5;
+    item.health += 10;
+    showCards(array);
+    console.log("clickec");
+  })
+  // // showCards(dinos);
+  };
+
+const init = () => {
+  buildForm();
+  showCards(dinos);
+  petDino(dinos);
+}
 
 init();

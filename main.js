@@ -101,11 +101,11 @@ const buildForm = () => {
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="dinoName">Name</label>
-        <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+        <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
       </div>
       <div class="form-group col-md-6">
         <label for="dinoOwner">Owner</label>
-        <input type="password" class="form-control" id="inputOwner" placeholder="Enter Owner">
+        <input type="text" class="form-control" id="inputOwner" placeholder="Enter Owner">
       </div>
     </div>
     <div class="form-row">
@@ -162,9 +162,31 @@ const showCards = (array) => {
   })
 };
 
+const addDinoToKennel = () => {
+  $('#addDinoToKennelBtn').click(() => {
+    let newDinoCard = {
+      name: $('#inputName').val(),
+      type: $('#inputType').val(),
+      age: $('#inputAge').val(),
+      owner: $('#inputOwner').val(),
+      adventures: [],
+      health: 80,
+      imageUrl: $('#inputImage').val(),
+    }
+    $('#kennelDinos').html('');
+    $('#hospitalDinos').html('');
+    $('#graveyardDinos').html('');
+    dinos.push(newDinoCard);
+    showCards(dinos);
+    console.log("clicked");
+    console.log(dinos);
+  })
+}
+
 const init = () => {
     buildForm();
     showCards(dinos);
+    addDinoToKennel();
 }
 
 init();

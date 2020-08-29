@@ -101,11 +101,11 @@ const buildForm = () => {
     <div class="form-row">
       <div class="form-group col-md-6">
         <label for="dinoName">Name</label>
-        <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+        <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
       </div>
       <div class="form-group col-md-6">
         <label for="dinoOwner">Owner</label>
-        <input type="password" class="form-control" id="inputOwner" placeholder="Enter Owner">
+        <input type="text" class="form-control" id="inputOwner" placeholder="Enter Owner">
       </div>
     </div>
     <div class="form-row">
@@ -145,6 +145,7 @@ const buildDinoCard = (item, index) => {
                     <button type="button" class="btn btn-outline-warning" id="feedBtn-${index}">Feed</button>
                     <button type="button" class="btn btn-outline-info" id="adventureBtn-${index}">Adventure</button>
                     <button type="button" class="btn btn-outline-danger" id="removeBtn-${index}">Remove</button>
+                    <button type="button" class="btn btn-outline-danger" id="infoBtn-${item.id}">Info</button>
                 </div>
             </div>
         </div>`
@@ -161,6 +162,27 @@ const showCards = (array) => {
     }
   })
 };
+
+const addDinoToKennel = () => {
+  $('#addDinoToKennelBtn').click(() => {
+    let newDinoCard = {
+      name: $('#inputName').val(),
+      type: $('#inputType').val(),
+      age: $('#inputAge').val(),
+      owner: $('#inputOwner').val(),
+      adventures: [],
+      health: 80,
+      imageUrl: $('#inputImage').val(),
+    }
+    $('#kennelDinos').html('');
+    $('#hospitalDinos').html('');
+    $('#graveyardDinos').html('');
+    dinos.push(newDinoCard);
+    showCards(dinos);
+    console.log("clicked");
+    console.log(dinos);
+  })
+}
 
 const buildModal = () => {
   return `
@@ -185,9 +207,34 @@ const buildModal = () => {
 </div>`
 };
 
-const showModal = (array) => {
-  array.forEach((item)=> {
-    $(`item-${index}`).click(() => {
+
+const showModal = () => {
+  // array.forEach((item)=> {
+  //   $(`infoBtn-${item.id}`).click(() => {
+  //     console.log("clicked");
+  //     $('#containerModal').html(`
+  //     <div class="modal" tabindex="-1" role="dialog">
+  //     <div class="modal-dialog" role="document">
+  //       <div class="modal-content">
+  //         <div class="modal-header">
+  //           <h5 class="modal-title">Modal title</h5>
+  //           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  //             <span aria-hidden="true">&times;</span>
+  //           </button>
+  //         </div>
+  //         <div class="modal-body">
+  //           <p>Modal body text goes here.</p>
+  //         </div>
+  //         <div class="modal-footer">
+  //           <button type="button" class="btn btn-primary">Save changes</button>
+  //           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </div>`);
+  //   })
+  // })
+  $('#dinoCard-0').click(() => {
       $('#containerModal').html(`
       <div class="modal" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -208,17 +255,15 @@ const showModal = (array) => {
         </div>
       </div>
     </div>`);
-    })
+    // $('#containerModal').append(buildModal());
   })
-  // $('#dinoCard-0').click(() => {
-  //   $('#containerModal').append(buildModal());
-  // })
 };
 
 const init = () => {
     buildForm();
     showCards(dinos);
     showModal(dinos);
+    addDinoToKennel();
 }
 
 init();

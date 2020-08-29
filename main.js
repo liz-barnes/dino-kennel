@@ -131,7 +131,7 @@ const buildForm = () => {
 
 const buildDinoCard = (item, index) => {
     return `
-        <div id="dinoCard">
+        <div id="dinoCard-${index}">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
                 <div class="card-body">
@@ -183,10 +183,27 @@ const addDinoToKennel = () => {
   })
 }
 
+// const removeDino = (id) => {
+//   $('#removeBtn-0').click(() => {
+//       dinos.splice(id, 1)
+//       console.log("clicked")
+//  })
+//  showCards(dinos);
+ const removeDino = (index, array) => {
+  $(`#removeBtn-${index}`).click(() => {
+      array.splice(index, 1);
+      console.log("clicked");
+  })
+  showCards(dinos);
+};
+
+
+
 const init = () => {
     buildForm();
     showCards(dinos);
     addDinoToKennel();
+    removeDino();
 }
 
 init();

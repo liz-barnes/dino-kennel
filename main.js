@@ -130,8 +130,8 @@ const buildForm = () => {
 };
 
 const buildDinoCard = (item, index) => {
-    return `
-        <div id="dinoCard-${index}">
+    const card = `
+        <div id="dinoCard-${item.id}">
             <div class="card" style="width: 18rem;">
                 <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
                 <div class="card-body">
@@ -148,20 +148,31 @@ const buildDinoCard = (item, index) => {
                 </div>
             </div>
         </div>`
+      // document.getElementById('removeBtn-0').addEventListener('click', function(){
+      //   console.log("clicked")
+      // });
+        // $('#removeBtn-0').click(() => {
+        //   // removeDino();
+        //   console.log("clicked")
+        // })
+    return card
 };
+
 
 const showCards = (array) => {
   array.forEach((item, index) => {
     if (item.health === 0) {
       $('#graveyardDinos').append(buildDinoCard(item, index));
+      cardEvents(index);
     } else if (item.health <= 50) {
       $('#hospitalDinos').append(buildDinoCard(item, index));
+      cardEvents(index);
     } else if (item.health > 50) {
       $('#kennelDinos').append(buildDinoCard(item, index));
+      cardEvents(index);
+      console.log(index, "index of kennel")
     }
   })
-  removeDino(array);
-  // buttonEvent(dinos);
 };
 
 const addDinoToKennel = () => {
@@ -180,10 +191,55 @@ const addDinoToKennel = () => {
     $('#graveyardDinos').html('');
     dinos.push(newDinoCard);
     showCards(dinos);
-    console.log("clicked");
-    console.log(dinos);
   })
 }
+
+const cardEvents = (index) => {
+  console.log("event log", index)
+  document.getElementById('removeBtn-'+index).addEventListener('click', removeDinos(index));
+
+  // $('#removeBtn-'+index).click(function() {
+  //   // removeDino();
+  //   console.log("index", index)
+  // })
+}
+
+function removeDinos(index) {
+  console.log("remove dinos now")
+  dinos.splice(index, 1);
+}
+// const removeDino = (e) => {
+//   console.log("remove pls")
+// //   $(`#removeBtn-${index}`).on('click', e => {
+//   // const ctype = e.target.type;
+//   const target = e;
+//   console.log(target, "target")
+
+//   // if (ctype === 'removeBtn-0') {
+//   //   dinos.splice(target, 1);
+
+//   //   showCards(dinos);
+//   //   console.log("clicked")
+//   // }
+// }
+
+// const buttonEvents = () => {
+//   $(`#removeBtn-${index}`).on('click'
+
+// }
+
+// const getSelectedItemId = (e) => {
+
+
+//   $(`#removeBtn-${index}`).on('click', e => {
+//     const target = e.target.id;
+
+
+
+// })
+// }
+
+
 
 // const removeDino = (id) => {
 //   $('#removeBtn-0').click(() => {
@@ -192,36 +248,63 @@ const addDinoToKennel = () => {
 //  })
 //  showCards(dinos);
 
- const removeDino = (e) => {
-  // $(`#removeBtn-${index}`).on('click', e => {
-  //   const target = e.target.id
-  //   array.splice(index, 1);
-    // console.log("clicked");
-  // })
-  // showCards(dinos);
-  const target = e.target.id;
-  console.log(target)
-  for (let i = 0; i < dinos.length; i++) {
-    if (target === `removeBtn-${i}`) {
-      dinos.splice(target, 1);
-      console.log("clicked");
-    }
+//  const removeDino = (e) => {
+//   // $(`#removeBtn-${index}`).on('click', e => {
+//   //   const target = e.target.id
+//   //   array.splice(index, 1);
+//     // console.log("clicked");
+//   // })
+//   // showCards(dinos);
+//   const target = e.target.id;
+//   console.log(target)
+//   for (let i = 0; i < dinos.length; i++) {
+//     if (target === `removeBtn-${i}`) {
+//       dinos.splice(target, 1);
+//       console.log("clicked");
+//     }
   
-    showCards(dinos);
-    // buttonEvent(dinos);
-}
-}
+//     showCards(dinos);
+//     // buttonEvent(dinos);
+// }
+// }
 
-const buttonEvent = (arr) => {
-  for (let i = 0; i < arr.length; i++) {
-    document.querySelector(`#removeBtn-${i}`).addEventListener("click", removeDino);
-  }
-}
+// const buttonEvent = (arr) => {
+//   for (let i = 0; i < arr.length; i++) {
+//     document.querySelector(`#removeBtn-${i}`).addEventListener("click", removeDino);
+//   }
+// }
+
+// const removeDino = () => {
+
+  // $('#body').on('click', e => {
+  //       const target = e.target.id;
+  //       const id = target.slice(6, target.length);
+  //       if (target.includes('removeBtn')) {
+  //         $(`#card${id}`).remove();
+  //       }
+  //   //   });
+  // $(`#removeBtn-${item.id}`).on("click", (e) => {
+  //   const target = e.target.id;
+  //   // $(`dinoCard-${item.id}`).remove();
+  // });
+
+// const deleteDino = () => {
+//   $('#dinoLocation').on('click', e => {
+//     const target = e.target.id;
+//     const id = target.slice(6, target.length);
+//     if (target.includes('delete')) {
+//       $(`#card${id}`).remove();
+//     }
+//   });
+// };
+
 
 const init = () => {
+  
     buildForm();
     showCards(dinos);
     addDinoToKennel();
+    // removeDino(dinos);
     // removeDino(dinos);
 }
 

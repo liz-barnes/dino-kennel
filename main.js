@@ -160,15 +160,16 @@ const buildDinoCard = (item, index) => {
 
 
 const showCards = (array) => {
-  array.forEach((item, index) => {
-    if (item.health === 0) {
-      $('#graveyardDinos').append(buildDinoCard(item, index));
+  array.forEach((dinoObject, index) => {
+    console.log(dinoObject, "object")
+    if (dinoObject.health === 0) {
+      $('#graveyardDinos').append(buildDinoCard(dinoObject, index));
       cardEvents(index);
-    } else if (item.health <= 50) {
-      $('#hospitalDinos').append(buildDinoCard(item, index));
+    } else if (dinoObject.health <= 50) {
+      $('#hospitalDinos').append(buildDinoCard(dinoObject, index));
       cardEvents(index);
-    } else if (item.health > 50) {
-      $('#kennelDinos').append(buildDinoCard(item, index));
+    } else if (dinoObject.health > 50) {
+      $('#kennelDinos').append(buildDinoCard(dinoObject, index));
       cardEvents(index);
       console.log(index, "index of kennel")
     }
@@ -191,6 +192,7 @@ const addDinoToKennel = () => {
     $('#graveyardDinos').html('');
     dinos.push(newDinoCard);
     showCards(dinos);
+    console.log(dinos);
   })
 }
 

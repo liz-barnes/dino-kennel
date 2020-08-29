@@ -160,6 +160,8 @@ const showCards = (array) => {
       $('#kennelDinos').append(buildDinoCard(item, index));
     }
   })
+  removeDino(array);
+  // buttonEvent(dinos);
 };
 
 const addDinoToKennel = () => {
@@ -189,21 +191,38 @@ const addDinoToKennel = () => {
 //       console.log("clicked")
 //  })
 //  showCards(dinos);
- const removeDino = (index, array) => {
-  $(`#removeBtn-${index}`).click(() => {
-      array.splice(index, 1);
+
+ const removeDino = (e) => {
+  // $(`#removeBtn-${index}`).on('click', e => {
+  //   const target = e.target.id
+  //   array.splice(index, 1);
+    // console.log("clicked");
+  // })
+  // showCards(dinos);
+  const target = e.target.id;
+  console.log(target)
+  for (let i = 0; i < dinos.length; i++) {
+    if (target === `removeBtn-${i}`) {
+      dinos.splice(target, 1);
       console.log("clicked");
-  })
-  showCards(dinos);
-};
+    }
+  
+    showCards(dinos);
+    // buttonEvent(dinos);
+}
+}
 
-
+const buttonEvent = (arr) => {
+  for (let i = 0; i < arr.length; i++) {
+    document.querySelector(`#removeBtn-${i}`).addEventListener("click", removeDino);
+  }
+}
 
 const init = () => {
     buildForm();
     showCards(dinos);
     addDinoToKennel();
-    removeDino();
+    // removeDino(dinos);
 }
 
 init();

@@ -89,7 +89,7 @@ const dinos = [
       health: 22,
       imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOdrC7hlvBawFQ7g8vgwHcfQphX5WfeN2bth0dvc4M2oxNGdSD'
     }
-  ];
+];
 
 // const labelHealthStatus = () => {
 //     if (dinos.health === 0) {
@@ -111,11 +111,11 @@ const buildForm = () => {
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="dinoName">Name</label>
-      <input type="email" class="form-control" id="inputName" placeholder="Enter Name">
+      <input type="text" class="form-control" id="inputName" placeholder="Enter Name">
     </div>
     <div class="form-group col-md-6">
       <label for="dinoOwner">Owner</label>
-      <input type="password" class="form-control" id="inputOwner" placeholder="Enter Owner">
+      <input type="text" class="form-control" id="inputOwner" placeholder="Enter Owner">
     </div>
   </div>
   <div class="form-row">
@@ -140,8 +140,8 @@ const buildForm = () => {
 };
 
 const buildDinoCard = (item, index) => {
-  return `
-      <div id="dinoCard">
+  const card = `
+      <div id="dinoCard-${item.id}">
           <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
               <div class="card-body">
@@ -158,39 +158,112 @@ const buildDinoCard = (item, index) => {
               </div>
           </div>
       </div>`
+    // document.getElementById('removeBtn-0').addEventListener('click', function(){
+    //   console.log("clicked")
+    // });
+      // $('#removeBtn-0').click(() => {
+      //   // removeDino();
+      //   console.log("clicked")
+      // })
+  return card
 };
 
 const showCards = (array) => {
-array.forEach((item, index) => {
-  if (item.health === 0) {
-    $('#graveyardDinos').append(buildDinoCard(item, index));
-  } else if (item.health <= 50) {
-    $('#hospitalDinos').append(buildDinoCard(item, index));
-  } else if (item.health > 50) {
-    $('#kennelDinos').append(buildDinoCard(item, index));
-  }
-})
+  array.forEach((dinoObject, index) => {
+    if (dinoObject.health === 0) {
+      $('#graveyardDinos').append(buildDinoCard(dinoObject, index));
+    } else if (dinoObject.health <= 50) {
+      $('#hospitalDinos').append(buildDinoCard(dinoObject, index));
+    } else if (dinoObject.health > 50) {
+      $('#kennelDinos').append(buildDinoCard(dinoObject, index));
+    }
+    cardEvents(index, dinoObject);
+  })
 };
 
-const petDino = (item, index, array) => {
-  // // const petDinoButton = $(`#petBtn-${index}`);
-  // // dinos.health += 5;
+const addDinoToKennel = () => {
+  $('#addDinoToKennelBtn').click(() => {
+    let newDinoCard = {
+      name: $('#inputName').val(),
+      type: $('#inputType').val(),
+      age: $('#inputAge').val(),
+      owner: $('#inputOwner').val(),
+      adventures: [],
+      health: 80,
+      imageUrl: $('#inputImage').val(),
+    }
+    $('#kennelDinos').html('');
+    $('#hospitalDinos').html('');
+    $('#graveyardDinos').html('');
+    
+    dinos.push(newDinoCard);
 
-  $(`petBtn-${index}`).click(() => {
-  //   // dinos.health.push(dinoHealth);
-  //   // console.log("clicked");
-  //   // item.health += 5;
-    item.health += 10;
-    showCards(array);
-    console.log("clickec");
+    showCards(dinos);
+ 
   })
-  // // showCards(dinos);
+}
+
+const cardEvents = (index, item) => {
+  // console.log("event log", index)
+  // document.getElementById('removeBtn-'+index).addEventListener('click', removeDinos(index));
+
+  $(`#removeBtn-${index}`).click(function() {
+    removeDinos(index);
+    // console.log("index", index)
+  })
+
+  $(`#petBtn-${index}`).click(function() {
+    console.log("pet click")
+    petDino(item);
+  })
+
+  $(`#feedBtn-${index}`).click(function() {
+    console.log("feed click")
+    feedDino(item);
+  })
+}
+
+function removeDinos(index) {
+  console.log("remove dinos now")
+  dinos.splice(index, 1);
+  console.log("dinos", dinos)
+  $('#kennelDinos').html('');
+  $('#hospitalDinos').html('');
+  $('#graveyardDinos').html('');
+  showCards(dinos);
+}
+
+const petDino = (item) => {
+  // // // const petDinoButton = $(`#petBtn-${index}`);
+  // // // dinos.health += 5;
+
+  // $(`petBtn-${index}`).click(() => {
+  // //   // dinos.health.push(dinoHealth);
+  // //   // console.log("clicked");
+  // //   // item.health += 5;
+  console.log(item)
+  item.health += 10;
+  $('#kennelDinos').html('');
+  $('#hospitalDinos').html('');
+  $('#graveyardDinos').html('');
+    showCards(dinos);
+    // console.log("pet dino clicked");
   };
 
-const init = () => {
-  buildForm();
+const feedDino = (item) => {
+  item.health += 5;
+  $('#kennelDinos').html('');
+  $('#hospitalDinos').html('');
+  $('#graveyardDinos').html('');
   showCards(dinos);
-  petDino(dinos);
+}
+
+const init = () => {
+  
+    buildForm();
+    showCards(dinos);
+    addDinoToKennel();
+    // petDino(dinos);
 }
 
 init();

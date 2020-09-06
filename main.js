@@ -141,7 +141,7 @@ const buildForm = () => {
 
 const buildDinoCard = (item, index) => {
   const card = `
-      <div id="dinoCard-${item.id}">
+      <div id="dinoCard-${item.id}" style="border: 2px solid #000000;">
           <div class="card" style="width: 18rem;">
               <img class="card-img-top" src="${item.imageUrl}" alt="Card image cap">
               <div class="card-body">

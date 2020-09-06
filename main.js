@@ -221,6 +221,11 @@ const cardEvents = (index, item) => {
     console.log("feed click")
     feedDino(item);
   })
+
+  $(`#adventureBtn-${index}`).click(function() {
+    console.log("adventure click")
+    adventureTime(item);
+  })
 }
 
 function removeDinos(index) {
@@ -252,6 +257,14 @@ const petDino = (item) => {
 
 const feedDino = (item) => {
   item.health += 5;
+  $('#kennelDinos').html('');
+  $('#hospitalDinos').html('');
+  $('#graveyardDinos').html('');
+  showCards(dinos);
+}
+
+const adventureTime = (item) => {
+  item.health -= 25;
   $('#kennelDinos').html('');
   $('#hospitalDinos').html('');
   $('#graveyardDinos').html('');
